@@ -10,7 +10,6 @@ from skills.weather import get_weather
 
 from ui.terminal_ui import show
 
-
 def handle_command(command: str) -> str:
     """
     Xử lý lệnh sau khi wake word
@@ -24,7 +23,6 @@ def handle_command(command: str) -> str:
         return get_weather()
 
     return ask_ollama(command)
-
 
 def main():
     listener = VoskListener()
@@ -57,7 +55,6 @@ def main():
         # 5️⃣ Trả lời
         show(reply)
         speak(reply)
-
 
 if __name__ == "__main__":
     main()
