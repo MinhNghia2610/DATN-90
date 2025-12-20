@@ -24,7 +24,7 @@ class JarvisGUI:
         # ===== TITLE =====
         title = tk.Label(
             self.root,
-            text="J.A.R.V.I.S",
+            text="O.L.L.I.E",
             font=("Consolas", 22, "bold"),
             fg="#00ffe1"
         )
@@ -49,7 +49,7 @@ class JarvisGUI:
             font=("Consolas", 10)
         )
         self.log_box.pack(pady=10)
-        self.log("Jarvis GUI initialized.")
+        self.log("OLLIE GUI initialized.")
 
         # ===== BUTTONS =====
         btn_frame = tk.Frame(self.root)

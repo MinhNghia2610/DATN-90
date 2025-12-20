@@ -27,7 +27,7 @@ def handle_command(command: str) -> str:
 def main():
     listener = VoskListener()
 
-    print("🤖 Quản gia đang chạy nền... (Gọi: Ê quản gia)")
+    print("🤖 Quản gia đang chạy nền...")
 
     while True:
         # 1️⃣ Nghe nền (wake word)
