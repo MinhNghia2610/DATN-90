@@ -1,14 +1,12 @@
 import unicodedata
 
 WAKE_WORDS = [
-    "quan gia",
-    "quản gia",
-    "quang gia",
-    "quảng gia",
-    "qua gia",
-    "quả gia",
-    "qua gian",
-    "quả gian",
+    "ê ollie cho tôi hỏi",
+    "e ollie cho toi hoi",
+    "ê oli cho tôi hỏi",
+    "ee oli cho toi hỏi",
+    "ê ollie cho tôi hoi",
+    "ee ollie cho tooi hoir"
 ]
 
 def normalize(text: str) -> str:
