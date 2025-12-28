@@ -8,7 +8,7 @@ import os
 class JarvisGUI:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("J.A.R.V.I.S Assistant")
+        self.root.title("O.L.L.I.E Assistant")
         self.root.geometry("600x400")
         self.root.resizable(False, False)
 
@@ -97,13 +97,13 @@ class JarvisGUI:
         self.status_label.config(text="Status: Stopped", fg="red")
         self.start_btn.config(state=tk.NORMAL)
         self.stop_btn.config(state=tk.DISABLED)
-        self.log("Jarvis stopped.")
+        self.log("OLLIE stopped.")
 
     # ===== PLACEHOLDER AI LOOP =====
     def _fake_listener(self):
         while self.running:
             time.sleep(3)
-            self.log("🎧 Waiting for wake word: 'Quan Gia'...")
+            self.log("🎧 Waiting for wake word: 'OLLIE'...")
 
     def run(self):
         self.root.mainloop()
