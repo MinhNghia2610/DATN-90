@@ -1,60 +1,37 @@
-from speech.vosk_listener import VoskListener
-from speech.wake_word import is_wake_word
-from speech.speak import speak
-
-from ai.ollama_client import ask_ollama
-from ai.router import route
-
-from skills.spotify import play_music
-from skills.weather import get_weather
-
-from ui.terminal_ui import show
-
-def handle_command(command: str) -> str:
-    """
-    Xử lý lệnh sau khi wake word
-    """
-    action = route(command)
-
-    if action == "spotify":
-        return play_music()
-
-    if action == "weather":
-        return get_weather()
-
-    return ask_ollama(command)
+from audio.push_to_talk import PushToTalk
+from stt.vosk_stt import VoskSTT
+from llm.ollama_client import OllamaClient
+from tts.vietnamese_tts import VietnameseTTS
+from audio.player import Player
+from ui.console_ui import ConsoleUI
 
 def main():
-    listener = VoskListener()
+    ui = ConsoleUI()
+    ptt = PushToTalk()
+    stt = VoskSTT()
+    llm = OllamaClient()
+    tts = VietnameseTTS()
+    player = Player()
 
-    print("🤖 Quản gia đang chạy nền...")
+    ui.ready()
 
     while True:
-        # 1️⃣ Nghe nền (wake word)
-        text = listener.listen()
-        show(f"Nghe được: {text}")
+        ptt.listen()
 
-        if not is_wake_word(text):
+        text = stt.transcribe()
+        if not text:
+            print("❌ Không nghe rõ")
             continue
 
-        # 2️⃣ Phản hồi wake word
-        wake_reply = "Tôi đây, bạn cần gì?"
-        show(wake_reply)
-        speak(wake_reply)
+        print(f"🗣 Bạn nói: {text}")
+        ui.thinking()
 
-        # 3️⃣ Nghe lệnh
-        command = listener.listen()
-        if not command:
-            continue
+        answer = llm.ask(text)
+        print(f"🤖 Jarvis: {answer}")
 
-        show(f"Lệnh: {command}")
-
-        # 4️⃣ Xử lý lệnh
-        reply = handle_command(command)
-
-        # 5️⃣ Trả lời
-        show(reply)
-        speak(reply)
+        tts.speak(answer)
+        ui.speaking()
+        player.play("data/output.mp3")
 
 if __name__ == "__main__":
     main()
