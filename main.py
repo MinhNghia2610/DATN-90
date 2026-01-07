@@ -27,7 +27,7 @@ def main():
         ui.thinking()
 
         answer = llm.ask(text)
-        print(f"🤖 Jarvis: {answer}")
+        print(f"🤖 OLLIE: {answer}")
 
         tts.speak(answer)
         ui.speaking()
