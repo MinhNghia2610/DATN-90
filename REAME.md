@@ -24,7 +24,7 @@ OLLIE – Trợ lý ảo điều khiển bằng giọng nói
 
 Python 3.14.3
 
-************-Ollama – Large Language Model (LLM)-***************
+*************-Ollama – Large Language Model (LLM)-***************
 
 Vosk – Speech-to-Text tiếng Việt (offline)
 

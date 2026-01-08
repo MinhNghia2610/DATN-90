@@ -1,7 +1,7 @@
 import requests
 
-API_KEY = "YOUR_OPENWEATHER_API_KEY"
-CITY = "Hanoi"
+API_KEY = "4e536a8d913acd30bc2fa016dd57a1bb"
+CITY = "Ho Chi Minh City"
 
 def get_weather():
     url = (

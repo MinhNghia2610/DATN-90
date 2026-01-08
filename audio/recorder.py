@@ -1,11 +1,7 @@
 import sounddevice as sd
 import soundfile as sf
 import numpy as np
-
 from config.setting import SAMPLE_RATE, CHANNELS, INPUT_AUDIO
-from audio.noise_gate import noise_gate
-from audio.filter import bandpass_filter
-from audio.gain import auto_gain
 
 class Recorder:
     def __init__(self):
@@ -19,7 +15,6 @@ class Recorder:
     def start(self):
         self.frames = []
         self.recording = True
-
         self.stream = sd.InputStream(
             samplerate=SAMPLE_RATE,
             channels=CHANNELS,
@@ -34,11 +29,9 @@ class Recorder:
         self.stream.close()
 
         audio = np.concatenate(self.frames, axis=0)
-        audio = audio.flatten()
 
-        # 🎧 AUDIO PROCESSING
-        audio = noise_gate(audio)
-        audio = bandpass_filter(audio)
-        audio = auto_gain(audio)
+        # Convert float → int16
+        audio = np.clip(audio, -1.0, 1.0)
+        audio = (audio * 32767).astype(np.int16)
 
-        sf.write(INPUT_AUDIO, audio, SAMPLE_RATE, subtype="PCM_16")
+        sf.write(INPUT_AUDIO, audio, SAMPLE_RATE)
