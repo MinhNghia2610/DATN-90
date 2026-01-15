@@ -1,0 +1,6 @@
+class OllieState:
+    IDLE = "IDLE"
+    READY = "READY"
+    LISTENING = "LISTENING"
+    THINKING = "THINKING"
+    SPEAKING = "SPEAKING"
